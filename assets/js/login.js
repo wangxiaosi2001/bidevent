@@ -29,7 +29,7 @@ $(function () {
         e.preventDefault();
         $.ajax({
             type:'POST',
-            url:'http://www.liulongbin.top:3007/api/reguser',
+            url:'/api/reguser',
             data:{username:$('#form-reg [name=username]').val(),password:$('#form-reg [name=password]').val()},
             success:function(res){
                 if(res.status!=0) return layer.msg(res.message);
@@ -45,12 +45,13 @@ $(function () {
         e.preventDefault();
         $.ajax({
             type:'POST',
-            url:'http://www.liulongbin.top:3007/api/login',
+            url:'/api/login',
             data:$(this).serialize(),
             success:function(res){
                 if(res.status!==0) return layer.msg(res.message);
                layer.msg('登录成功');
             //    console.log(res.token);
+            localStorage.setItem("token",res.token);
             location.href="/index.html";
                
             }
